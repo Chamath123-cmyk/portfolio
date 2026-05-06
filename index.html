@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chamath N Dissanayake — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #21262d;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #7d8590;
+    --sub: #8b949e;
+    --accent: #0E75B6;
+    --accent2: #00d4ff;
+    --green: #3fb950;
+  }
+
+  html, body {
+    min-height: 100%;
+    background: var(--bg);
+    font-family: 'Sora', sans-serif;
+    color: var(--text);
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    padding: 20px 12px 40px;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(14,117,182,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .avatar {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0E75B6, #00d4ff);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 18px; font-weight: 700; color: #fff;
+    border: 2px solid rgba(14,117,182,0.5);
+    flex-shrink: 0;
+  }
+
+  .hero-name { font-size: 17px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; }
+  .hero-sub {
+    font-size: 11px; color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    display: flex; align-items: center; gap: 5px;
+  }
+
+  .dot { color: var(--green); font-size: 9px; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+
+  .tag {
+    font-size: 10px;
+    font-family: 'Space Mono', monospace;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+  }
+
+  .tag-blue   { background: rgba(14,117,182,0.15); border-color: rgba(14,117,182,0.45); color: #58a6ff; }
+  .tag-cyan   { background: rgba(0,212,255,0.08);  border-color: rgba(0,212,255,0.3);   color: #00d4ff; }
+  .tag-green  { background: rgba(63,185,80,0.1);   border-color: rgba(63,185,80,0.35);  color: #3fb950; }
+  .tag-purple { background: rgba(163,113,247,0.1); border-color: rgba(163,113,247,0.35);color: #a371f7; }
+
+  .bio-items { display: flex; flex-direction: column; gap: 8px; }
+  .bio-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 12.5px; color: var(--sub); line-height: 1.55;
+  }
+  .bio-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .bio-item strong { color: #c9d1d9; font-weight: 500; }
+
+  /* CARD */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+  }
+
+  .sec-hdr {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .sec-hdr span {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    white-space: nowrap;
+  }
+
+  .sec-hdr::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  /* TECH BADGES */
+  .tech-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .tech-badge {
+    display: flex; align-items: center; gap: 5px;
+    padding: 5px 11px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 11.5px; color: #c9d1d9;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .tech-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+  /* STATS — replaced with shields.io badges since github-readme-stats blocks file:// */
+  .stat-placeholder {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    line-height: 1.7;
+  }
+
+  .stat-placeholder a {
+    color: #58a6ff;
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .stat-full { grid-column: 1 / -1; }
+
+  .stat-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+
+  .stat-label {
+    font-size: 10px; color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .stat-card img { width: 100%; border-radius: 4px; display: block; }
+
+  /* TROPHIES */
+  .trophy-img { width: 100%; border-radius: 6px; display: block; }
+
+  /* CONNECT */
+  .connect-grid { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .connect-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 9px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-family: 'Space Mono', monospace;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    color: #c9d1d9;
+    background: var(--surface2);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+
+  .connect-btn:hover {
+    border-color: var(--accent);
+    color: #58a6ff;
+    background: rgba(14,117,182,0.1);
+  }
+
+  /* QUOTE */
+  .quote-bar {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+
+  .quote-line {
+    width: 3px; height: 36px;
+    background: linear-gradient(180deg, var(--accent), var(--accent2));
+    border-radius: 2px; flex-shrink: 0;
+  }
+
+  .quote-text {
+    font-size: 12.5px; color: var(--muted);
+    font-style: italic; line-height: 1.55;
+  }
+
+  /* FOOTER */
+  .footer {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 11px; color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    padding: 2px 4px 0;
+  }
+
+  .counter-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green);
+    animation: blink 2s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+  .footer img { height: 15px; vertical-align: middle; margin-left: 2px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 360px) {
+    body { padding: 12px 8px 32px; }
+    .hero-name { font-size: 15px; }
+    .connect-grid { flex-direction: column; }
+    .connect-btn { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-top">
+      <div class="avatar">CD</div>
+      <div>
+        <div class="hero-name">Chamath N Dissanayake</div>
+        <div class="hero-sub"><span class="dot">●</span> Frontend Dev · Cybersec · 🇱🇰 Sri Lanka</div>
+      </div>
+    </div>
+
+    <div class="tag-row">
+      <span class="tag tag-blue">Frontend Dev</span>
+      <span class="tag tag-cyan">Cybersecurity</span>
+      <span class="tag tag-green">Full-stack</span>
+      <span class="tag tag-purple">Collaborate</span>
+    </div>
+
+    <div class="bio-items">
+      <div class="bio-item"><span class="bio-icon">🛡️</span><span>Exploring <strong>Networking</strong>, <strong>Ethical Hacking</strong> with Kali Linux &amp; system vulnerabilities</span></div>
+      <div class="bio-item"><span class="bio-icon">🐍</span><span>Mastering <strong>Python</strong> for automation &amp; security tooling</span></div>
+      <div class="bio-item"><span class="bio-icon">🚀</span><span>Levelling up in <strong>Full Stack</strong> — building robust end-to-end apps</span></div>
+      <div class="bio-item"><span class="bio-icon">⚙️</span><span>Actively learning <strong>CI/CD</strong> &amp; cloud infrastructure — open to collaborators!</span></div>
+    </div>
+  </div>
+
+  <!-- TECH -->
+  <div class="card">
+    <div class="sec-hdr"><span>🛠 Languages &amp; Tools</span></div>
+    <div class="tech-grid">
+      <div class="tech-badge"><span class="tech-dot" style="background:#DD0031"></span>Angular</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#61DAFB"></span>React</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#aaa"></span>Next.js</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#F7DF1E"></span>JavaScript</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#007ACC"></span>TypeScript</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#339933"></span>Node.js</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#888"></span>Express</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#777BB4"></span>PHP</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#239120"></span>C#</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#47A248"></span>MongoDB</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#4479A1"></span>MySQL</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#3776AB"></span>Python</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#557C94"></span>Kali Linux</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#aaa"></span>Unity</div>
+      <div class="tech-badge"><span class="tech-dot" style="background:#F24E1E"></span>Figma</div>
+    </div>
+  </div>
+
+  <!-- GITHUB STATS -->
+  <div class="card">
+    <div class="sec-hdr"><span>📊 GitHub Stats</span></div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Top Languages</div>
+        <img src="https://github-readme-stats.vercel.app/api/top-langs?username=chamath123-cmyk&layout=compact&theme=tokyonight&hide_border=true" alt="Top languages" loading="lazy" />
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Activity</div>
+        <img src="https://github-readme-stats.vercel.app/api?username=chamath123-cmyk&show_icons=true&theme=tokyonight&hide_border=true&hide_title=true&rank_icon=github" alt="GitHub stats" loading="lazy" />
+      </div>
+      <div class="stat-card stat-full">
+        <div class="stat-label">Streak</div>
+        <img src="https://streak-stats.demolab.com?user=chamath123-cmyk&theme=tokyonight&hide_border=true" alt="Streak stats" loading="lazy" />
+      </div>
+    </div>
+  </div>
+
+  <!-- TROPHIES -->
+  <div class="card">
+    <div class="sec-hdr"><span>🏆 Trophies</span></div>
+    <img class="trophy-img" src="https://github-profile-trophy.vercel.app/?username=chamath123-cmyk&theme=tokyonight&no-frame=true&column=4&margin-w=8" alt="GitHub trophies" loading="lazy" />
+  </div>
+
+  <!-- CONNECT -->
+  <div class="card">
+    <div class="sec-hdr"><span>🤝 Connect</span></div>
+    <div class="connect-grid">
+      <a class="connect-btn" href="mailto:chamathneranjana854@mail.com">✉ Email</a>
+      <a class="connect-btn" href="https://www.facebook.com/Chamathndissanayake" target="_blank" rel="noopener">📘 Facebook</a>
+      <a class="connect-btn" href="https://github.com/Chamath123-cmyk" target="_blank" rel="noopener">🐙 GitHub</a>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-bar">
+    <div class="quote-line"></div>
+    <div class="quote-text">"Code is like humor. When you have to explain it, it's bad."</div>
+  </div>
+
+  <!-- FOOTER / COUNTER -->
+  <div class="footer">
+    <span class="counter-dot"></span>
+    Profile views:
+    <img src="https://profile-counter.glitch.me/chamath123-cmyk/count.svg" alt="Profile view count" />
+  </div>
+
+</div>
+</body>
+</html>
